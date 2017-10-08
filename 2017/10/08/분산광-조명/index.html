@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang=kr>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Diffuse Light분산 반사 거친 표면의 한 점을 빛이 때리면 광선들이 무작위 방향들로 흩어질 것이다. 이를 분산 반사(diffuse reflection)이라 부른다.  이 책에서는 이 흩어진 빛들이 고르게 분산된다는 가정을 하고 있다.따라서 반사된 빛은 시점 (눈의 위치)과 무관하게 눈에 도달한다. 즉 표면의 한 점의 색상은 그 점을 어디에서 보든">
+<meta name="keywords" content="Study">
+<meta property="og:type" content="article">
+<meta property="og:title" content="분산광 조명">
+<meta property="og:url" content="https:oraora81.github.io/2017/10/08/분산광-조명/index.html">
+<meta property="og:site_name" content="이상한 바다의 게롤트">
+<meta property="og:description" content="Diffuse Light분산 반사 거친 표면의 한 점을 빛이 때리면 광선들이 무작위 방향들로 흩어질 것이다. 이를 분산 반사(diffuse reflection)이라 부른다.  이 책에서는 이 흩어진 빛들이 고르게 분산된다는 가정을 하고 있다.따라서 반사된 빛은 시점 (눈의 위치)과 무관하게 눈에 도달한다. 즉 표면의 한 점의 색상은 그 점을 어디에서 보든">
+<meta property="og:locale" content="kr">
+<meta property="og:image" content="https:/2017/10/08/분산광-조명/a1.jpg">
+<meta property="og:image" content="https:/2017/10/08/분산광-조명/a2.jpg">
+<meta property="og:updated_time" content="2017-10-08T14:23:09.487Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="분산광 조명">
+<meta name="twitter:description" content="Diffuse Light분산 반사 거친 표면의 한 점을 빛이 때리면 광선들이 무작위 방향들로 흩어질 것이다. 이를 분산 반사(diffuse reflection)이라 부른다.  이 책에서는 이 흩어진 빛들이 고르게 분산된다는 가정을 하고 있다.따라서 반사된 빛은 시점 (눈의 위치)과 무관하게 눈에 도달한다. 즉 표면의 한 점의 색상은 그 점을 어디에서 보든">
+<meta name="twitter:image" content="https:/2017/10/08/분산광-조명/a1.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>분산광 조명</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2017/10/08/람베르트의-코사인-법칙/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https:oraora81.github.io/2017/10/08/분산광-조명/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https:oraora81.github.io/2017/10/08/분산광-조명/&text=분산광 조명"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https:oraora81.github.io/2017/10/08/분산광-조명/&title=분산광 조명"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https:oraora81.github.io/2017/10/08/분산광-조명/&is_video=false&description=분산광 조명"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=분산광 조명&body=Check out this article: https:oraora81.github.io/2017/10/08/분산광-조명/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https:oraora81.github.io/2017/10/08/분산광-조명/&title=분산광 조명"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https:oraora81.github.io/2017/10/08/분산광-조명/&title=분산광 조명"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https:oraora81.github.io/2017/10/08/분산광-조명/&title=분산광 조명"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https:oraora81.github.io/2017/10/08/분산광-조명/&title=분산광 조명"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https:oraora81.github.io/2017/10/08/분산광-조명/&name=분산광 조명&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Diffuse-Light"><span class="toc-number">1.</span> <span class="toc-text">Diffuse Light</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#분산-반사"><span class="toc-number">1.1.</span> <span class="toc-text">분산 반사</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#분산광-계산"><span class="toc-number">1.2.</span> <span class="toc-text">분산광 계산</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#첫번째"><span class="toc-number">1.2.1.</span> <span class="toc-text">첫번째</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#두번째"><span class="toc-number">1.2.2.</span> <span class="toc-text">두번째</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        분산광 조명
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">이상한 바다의 게롤트</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-10-08T13:27:35.000Z" itemprop="datePublished">2017-10-08</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Study/">Study</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="Diffuse-Light"><a href="#Diffuse-Light" class="headerlink" title="Diffuse Light"></a>Diffuse Light</h1><h2 id="분산-반사"><a href="#분산-반사" class="headerlink" title="분산 반사"></a>분산 반사</h2><img src="/2017/10/08/분산광-조명/a1.jpg" alt="a1.jpg" title="">
+<p>거친 표면의 한 점을 빛이 때리면 광선들이 무작위 방향들로 흩어질 것이다. 이를 <code>분산 반사(diffuse reflection)</code>이라 부른다.</p>
+<ul>
+<li>이 책에서는 이 흩어진 빛들이 고르게 분산된다는 가정을 하고 있다.<br>따라서 반사된 빛은 <code>시점 (눈의 위치)</code>과 무관하게 눈에 도달한다.</li>
+<li>즉 표면의 한 점의 색상은 그 점을 어디에서 보든 같다.</li>
+<li>그러므로 분산광을 계산할 때에는 시점을 고려할 필요가 없다. (시점에 독립적)</li>
+</ul>
+<h2 id="분산광-계산"><a href="#분산광-계산" class="headerlink" title="분산광 계산"></a>분산광 계산</h2><p>두 부분으로 나뉜다.</p>
+<h3 id="첫번째"><a href="#첫번째" class="headerlink" title="첫번째"></a>첫번째</h3><p>분산광의 색과 표면의 분산광 재질 색상이 관여</p>
+<ul>
+<li>재질 색상은 표면이 입사 분산광을 얼마나 반사하고 흡수하는지 뜻한다.</li>
+<li>분산광의 색과 분산광 재질의 색상을 <code>성분별로</code> 곱하면 반사된 분산광의 색상이 나온다.<blockquote><p>표면의 한 점이 분산광의 적색광을 50%, 녹색광을 100%, 청색광을 75% 반사한다면?<br>그 점에 세기가 80%인  백색광이 들어온다면?<br>입사 분산광 ld = (0.8, 0.8, 0.8)이<br>분산광 재질 색상 md = (0.5, 1.0, 0.75) 라고 가정하면<br>반사된 분산광의 색상은 다음과 같다.<br>D = ld X md = (0.8, 0..8, 0.8) X (0.5, 1.0, 0.75) = (0.4, 0.8, 0.6)</p>
+<footer><strong>예제</strong></footer></blockquote>
+</li>
+</ul>
+<h3 id="두번째"><a href="#두번째" class="headerlink" title="두번째"></a>두번째</h3><p>위 첫째 술식에서 나온 반사광의 세기를 람베르트의 코사인 법칙에 의거하여 조정한다.</p>
+<ul>
+<li>빛 벡터와 표면 법선의 각도에 따라 반사광의 세기를 조율한다는 것.<blockquote><p>ld가 분산광 색상이고 md가 분산광 재질 색상이라고 하자.<br>L이 빛 벡터, n이 표면 법선이라 한다면<br>kd = max(L’n, 0)이다.<br>이제 그 점에서 반사된 분산광은 다음과 같다.</p>
+<footer><strong>예제</strong></footer></blockquote>
+<img src="/2017/10/08/분산광-조명/a2.jpg" alt="a2.jpg" title=""></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Diffuse-Light"><span class="toc-number">1.</span> <span class="toc-text">Diffuse Light</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#분산-반사"><span class="toc-number">1.1.</span> <span class="toc-text">분산 반사</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#분산광-계산"><span class="toc-number">1.2.</span> <span class="toc-text">분산광 계산</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#첫번째"><span class="toc-number">1.2.1.</span> <span class="toc-text">첫번째</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#두번째"><span class="toc-number">1.2.2.</span> <span class="toc-text">두번째</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https:oraora81.github.io/2017/10/08/분산광-조명/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https:oraora81.github.io/2017/10/08/분산광-조명/&text=분산광 조명"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https:oraora81.github.io/2017/10/08/분산광-조명/&title=분산광 조명"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https:oraora81.github.io/2017/10/08/분산광-조명/&is_video=false&description=분산광 조명"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=분산광 조명&body=Check out this article: https:oraora81.github.io/2017/10/08/분산광-조명/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https:oraora81.github.io/2017/10/08/분산광-조명/&title=분산광 조명"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https:oraora81.github.io/2017/10/08/분산광-조명/&title=분산광 조명"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https:oraora81.github.io/2017/10/08/분산광-조명/&title=분산광 조명"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https:oraora81.github.io/2017/10/08/분산광-조명/&title=분산광 조명"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https:oraora81.github.io/2017/10/08/분산광-조명/&name=분산광 조명&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 Lee JongHyun
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-107693212-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+
