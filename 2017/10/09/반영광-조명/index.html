@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang=kr>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Specular Light정의 매끄러운 표면이 있다고 가정하고, 표면을 때린 광선들 중 시점을 향한 반사 원뿔(cone of reflection)에 속하는 광선들은 눈에 뚜렷하게 인식됨. 이런 현상을 반영(反映) 반사 (specular reflection)이라 함. 분산광과 달리 반영광은 특정방향으로 반사됨. 시점에 따라 인식되지 않을 수 있음 씬에서 시점">
+<meta name="keywords" content="Study">
+<meta property="og:type" content="article">
+<meta property="og:title" content="반영광 조명">
+<meta property="og:url" content="https:oraora81.github.io/2017/10/09/반영광-조명/index.html">
+<meta property="og:site_name" content="이상한 바다의 게롤트">
+<meta property="og:description" content="Specular Light정의 매끄러운 표면이 있다고 가정하고, 표면을 때린 광선들 중 시점을 향한 반사 원뿔(cone of reflection)에 속하는 광선들은 눈에 뚜렷하게 인식됨. 이런 현상을 반영(反映) 반사 (specular reflection)이라 함. 분산광과 달리 반영광은 특정방향으로 반사됨. 시점에 따라 인식되지 않을 수 있음 씬에서 시점">
+<meta property="og:locale" content="kr">
+<meta property="og:image" content="https:/2017/10/09/반영광-조명/a1.jpg">
+<meta property="og:image" content="https:/2017/10/09/반영광-조명/a2.jpg">
+<meta property="og:image" content="https:/2017/10/09/반영광-조명/a3.jpg">
+<meta property="og:image" content="https:/2017/10/09/반영광-조명/a4.jpg">
+<meta property="og:image" content="https:/2017/10/09/반영광-조명/a5.jpg">
+<meta property="og:image" content="https:/2017/10/09/반영광-조명/a6.jpg">
+<meta property="og:image" content="https:/2017/10/09/반영광-조명/a7.jpg">
+<meta property="og:updated_time" content="2017-10-09T15:16:07.892Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="반영광 조명">
+<meta name="twitter:description" content="Specular Light정의 매끄러운 표면이 있다고 가정하고, 표면을 때린 광선들 중 시점을 향한 반사 원뿔(cone of reflection)에 속하는 광선들은 눈에 뚜렷하게 인식됨. 이런 현상을 반영(反映) 반사 (specular reflection)이라 함. 분산광과 달리 반영광은 특정방향으로 반사됨. 시점에 따라 인식되지 않을 수 있음 씬에서 시점">
+<meta name="twitter:image" content="https:/2017/10/09/반영광-조명/a1.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="https://www.gravatar.com/avatar/58f37915e85be626cc31e859e365e947?s=16">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>반영광 조명</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2017/10/09/주변광-조명/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https:oraora81.github.io/2017/10/09/반영광-조명/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https:oraora81.github.io/2017/10/09/반영광-조명/&text=반영광 조명"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https:oraora81.github.io/2017/10/09/반영광-조명/&title=반영광 조명"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https:oraora81.github.io/2017/10/09/반영광-조명/&is_video=false&description=반영광 조명"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=반영광 조명&body=Check out this article: https:oraora81.github.io/2017/10/09/반영광-조명/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https:oraora81.github.io/2017/10/09/반영광-조명/&title=반영광 조명"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https:oraora81.github.io/2017/10/09/반영광-조명/&title=반영광 조명"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https:oraora81.github.io/2017/10/09/반영광-조명/&title=반영광 조명"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https:oraora81.github.io/2017/10/09/반영광-조명/&title=반영광 조명"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https:oraora81.github.io/2017/10/09/반영광-조명/&name=반영광 조명&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Specular-Light"><span class="toc-number">1.</span> <span class="toc-text">Specular Light</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#정의"><span class="toc-number">1.1.</span> <span class="toc-text">정의</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#계산식"><span class="toc-number">1.2.</span> <span class="toc-text">계산식</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#정의와-공식"><span class="toc-number">1.2.1.</span> <span class="toc-text">정의와 공식</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#실사용"><span class="toc-number">1.2.2.</span> <span class="toc-text">실사용</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#계산"><span class="toc-number">1.2.3.</span> <span class="toc-text">계산</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        반영광 조명
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">이상한 바다의 게롤트</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-10-09T14:18:29.000Z" itemprop="datePublished">2017-10-09</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Study/">Study</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="Specular-Light"><a href="#Specular-Light" class="headerlink" title="Specular Light"></a>Specular Light</h1><h2 id="정의"><a href="#정의" class="headerlink" title="정의"></a>정의</h2><ul>
+<li>매끄러운 표면이 있다고 가정하고, 표면을 때린 광선들 중 시점을 향한 <strong>반사 원뿔(cone of reflection)</strong>에 속하는 광선들은 눈에 뚜렷하게 인식됨.</li>
+<li>이런 현상을 반영(反映) 반사 (specular reflection)이라 함.</li>
+<li>분산광과 달리 반영광은 특정방향으로 반사됨.<ul>
+<li>시점에 따라 인식되지 않을 수 있음</li>
+<li>씬에서 시점이 이동하면 반영광의 양도 변함<ul>
+<li>시점 의존적이란 얘기<img src="/2017/10/09/반영광-조명/a1.jpg" alt="a1.jpg" title="">
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="계산식"><a href="#계산식" class="headerlink" title="계산식"></a>계산식</h2><h3 id="정의와-공식"><a href="#정의와-공식" class="headerlink" title="정의와 공식"></a>정의와 공식</h3><ul>
+<li>영역을 규정하는 원뿔은 반사 벡터 r에 대한 각도 ⲫmax로 정의됨<ul>
+<li>반영광의 세기는 r과 시점(view) 벡터 v = E - P / ||E - P|| 사이의 각도 ⲫ에 따라 변함<ul>
+<li>벡터 v는 표면의 점 P에서 뷰 위치 E로의 벡터</li>
+</ul>
+</li>
+<li>ⲫ = 0일때 최대, ⲫ가 ⲫmax에 가까워질 수록 0으로 감소</li>
+</ul>
+</li>
+</ul>
+<h3 id="실사용"><a href="#실사용" class="headerlink" title="실사용"></a>실사용</h3><p>람베르트의 코사인 법칙 함수를 조금 수정한 모형으로 위 모델을 수학적으로 표현</p>
+<blockquote>
+<p>다음 그림은 p &gt;= 1을 만족하는 여러가지 지수들로 거듭제곱한 그래프이다.<br><img src="/2017/10/09/반영광-조명/a2.jpg" alt="a2.jpg" title=""></p>
+<ul>
+<li>이 지수 p에 따라 빛의 세기가 0으로 떨어지는 원뿔 각도 ⲫmax가 달라짐</li>
+<li>실제 응용시 p를 조정하여 표면의 반짝이는 정도인 <strong>광택도(shininess)</strong>를 간접 조정</li>
+</ul>
+</blockquote>
+<ul>
+<li>매끄럽고 빛나는 표면일수록 반사 원뿔이 작다.(빛이 더 날카롭게 반사)<ul>
+<li>윤이 나지 않는 표면에 비해 p값을 크게 해야 함</li>
+</ul>
+</li>
+<li>v와 r은 둘 다 단위벡터이므로 cos(ⲫ) = v·r 이다.</li>
+</ul>
+<h3 id="계산"><a href="#계산" class="headerlink" title="계산"></a>계산</h3><p>반영광의 양은 다음과 같이 계산한다.<br><img src="/2017/10/09/반영광-조명/a3.jpg" alt="a3.jpg" title=""><br>이 식에서 ks는 다음 조건을 따른다.<br><img src="/2017/10/09/반영광-조명/a4.jpg" alt="a4.jpg" title=""></p>
+<ul>
+<li>색상 ls는 광원이 방출하는 반영광의 양</li>
+<li>반영광 재질 색상 ms는 표면이 반사하는 입사 반영광의 양을 결정</li>
+<li>계수 ks는 반영광 세기를 r, v사이의 각도에 따라 비례하는 역할<blockquote>
+<p>아래 그림처럼 각도에 따라 표면이 분산광을 전혀 안 받는 상황(L·n &lt; 0)에서 반영광은 받는 상황이 생길 수 있음. 비상식적인 상황이므로 이런 경우 ks = 0으로 설정</p>
+<img src="/2017/10/09/반영광-조명/a5.jpg" alt="a5.jpg" title="">
+</blockquote>
+</li>
+</ul>
+<p>결과적으로 반영광을 도입한 새 조명 모델은 아래와 같다.<br><img src="/2017/10/09/반영광-조명/a6.jpg" alt="a6.jpg" title=""></p>
+<blockquote>
+<p>반사 벡터<br><img src="/2017/10/09/반영광-조명/a7.jpg" alt="a7.jpg" title=""></p>
+<ul>
+<li>반사 벡터 r = I - 2(n·I)n으로 계산<ul>
+<li>n은 단위벡터</li>
+</ul>
+</li>
+<li>직접 계산할 필요없음.<ul>
+<li>셰이더 프로그램 안에서 hlsl 내장 명령인 reflect로 r을 구할 수 있음.</li>
+</ul>
+</li>
+<li>입사 벡터 I는 광선이 들어오는 방향</li>
+</ul>
+</blockquote>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Specular-Light"><span class="toc-number">1.</span> <span class="toc-text">Specular Light</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#정의"><span class="toc-number">1.1.</span> <span class="toc-text">정의</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#계산식"><span class="toc-number">1.2.</span> <span class="toc-text">계산식</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#정의와-공식"><span class="toc-number">1.2.1.</span> <span class="toc-text">정의와 공식</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#실사용"><span class="toc-number">1.2.2.</span> <span class="toc-text">실사용</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#계산"><span class="toc-number">1.2.3.</span> <span class="toc-text">계산</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https:oraora81.github.io/2017/10/09/반영광-조명/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https:oraora81.github.io/2017/10/09/반영광-조명/&text=반영광 조명"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https:oraora81.github.io/2017/10/09/반영광-조명/&title=반영광 조명"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https:oraora81.github.io/2017/10/09/반영광-조명/&is_video=false&description=반영광 조명"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=반영광 조명&body=Check out this article: https:oraora81.github.io/2017/10/09/반영광-조명/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https:oraora81.github.io/2017/10/09/반영광-조명/&title=반영광 조명"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https:oraora81.github.io/2017/10/09/반영광-조명/&title=반영광 조명"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https:oraora81.github.io/2017/10/09/반영광-조명/&title=반영광 조명"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https:oraora81.github.io/2017/10/09/반영광-조명/&title=반영광 조명"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https:oraora81.github.io/2017/10/09/반영광-조명/&name=반영광 조명&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 Lee JongHyun
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-107693212-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'oraora81';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
